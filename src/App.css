@@ -125,3 +125,83 @@ h2 {
     text-decoration: line-through;
     color: #999;
 }
+
+.todo-form-container {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px 30px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.todo-form-container h2,
+.todo-form-container h3 {
+    color: #333;
+    margin: 0;
+}
+
+.todo-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.todo-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-form-group label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.todo-form-group input[type="text"],
+.todo-form-group input[type="checkbox"] {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.todo-form-group input[type="checkbox"] {
+    width: auto;
+    margin-left: 0;
+}
+
+.todo-form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo-form-container button {
+    width: fit-content;
+    align-self: flex-end;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+}
+
+.todo-form-container button:hover {
+    background-color: #45a049;
+}
+
+.todo-date-display {
+    font-size: 0.9rem;
+    color: #666;
+    background-color: #f3f3f3;
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: fit-content;
+}
