@@ -11,7 +11,7 @@ function App() {
     <div>
       <Header />
       <ToDoList todos={data} />
-      <AddEditToDo />
+      <AddEditToDo todo={data[0]}/>
       <Footer />
     </div>
   );

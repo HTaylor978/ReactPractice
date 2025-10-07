@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import '../App.css';
 
 const AddEditToDo = ({ todo }) => {
-  const formattedDate = todo
-    ? new Intl.DateTimeFormat('en-GB', {
+  const [description, setDescription] = useState(todo ? todo.todoDescription : '');
+  const [completed, setCompleted] = useState(todo ? todo.todoCompleted : false);
+
+  let formattedDate;
+  if (todo) {
+        formattedDate = new Intl.DateTimeFormat('en-GB', {
         year: 'numeric',
         month: 'short',
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
-      }).format(new Date(todo.todoDateCreated))
-    : '';
-
-  const [description, setDescription] = useState(todo ? todo.todoDescription : '');
-  const [completed, setCompleted] = useState(todo ? todo.todoCompleted : false);
+      }).format(new Date(todo.todoDateCreated));
+    } else {
+        formattedDate = "";
+    };
 
   return (
     <div className="todo-form-container">
