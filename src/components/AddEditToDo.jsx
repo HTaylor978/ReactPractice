@@ -39,7 +39,6 @@ const AddEditToDo = ({ todo }) => {
     setToDo(newToDo);
   };
 
-
   return (
     <div className="todo-form-container">
       <h2>{todo ? 'Edit To Do' : 'Add New To Do'}</h2>
@@ -75,7 +74,12 @@ const AddEditToDo = ({ todo }) => {
           </>
         )}
 
-        <button type="submit" onClick={(e) => { e.preventDefault(); createToDo(description);}}>Save</button>
+        <button type="submit" onClick={(e) => {
+          e.preventDefault();
+          createToDo(description);
+          setDescription('');
+          }}
+          >Save</button>
       </form>
     </div>
   );
