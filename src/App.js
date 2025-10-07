@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import ToDoList from './components/ToDoList';
 import data from './todoData.json';
 import AddEditToDo from './components/AddEditToDo';
-import ToDoModel from './ToDoModel';
+// import ToDoModel from './ToDoModel';
 
 
 function App() {

@@ -1,17 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../App.css';
 import ToDoModel from '../ToDoModel';
+import axios from 'axios';
 
 const AddEditToDo = ({ todo }) => {
 	const [description, setDescription] = useState(todo ? todo.getDescription() : '');
 	const [completed, setCompleted] = useState(todo ? todo.getCompleted() : false);
 	const date = todo ? todo.getFormattedDate() : '';
+  const [toDo, setToDo] = useState(todo ? todo : '');
+
+  useEffect(() => {
+    const submit = async () => {
+      if (toDo instanceof ToDoModel) {
+        try {
+          const toDoPayload = {
+            "_id": toDo.getId(),
+            "todoDescription": toDo.getDescription(),
+            "todoDateCreated": toDo.getDate(),
+            "todoCompleted": toDo.getCompleted()
+          };
+          console.log('Sending toDo:', toDoPayload);
+
+          await axios.post("http://localhost:5001/api/update-json", toDoPayload, {
+            headers: {
+              'Content-Type': 'application/json'
+            }});
+        } catch (error) {
+          console.error("Failed to submit to json");
+        }
+      }
+    };
+    submit();
+  }, [toDo]);
 
   const createToDo = (description) => {
     const today = new Date();
-    todo = new ToDoModel(description, today, false);
-    console.log(todo);
-	};
+    const newToDo = new ToDoModel(description, today, false);
+    setToDo(newToDo);
+  };
+
 
   return (
     <div className="todo-form-container">
@@ -48,7 +75,7 @@ const AddEditToDo = ({ todo }) => {
           </>
         )}
 
-        <button type="submit" onClick={createToDo(description)}>Save</button>
+        <button type="submit" onClick={(e) => { e.preventDefault(); createToDo(description);}}>Save</button>
       </form>
     </div>
   );
