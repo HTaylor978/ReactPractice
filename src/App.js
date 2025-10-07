@@ -12,7 +12,7 @@ function App() {
     <div>
       <Header />
       <ToDoList todos={data} />
-      <AddEditToDo todo={new ToDoModel(data[0].todoDescription, data[0].todoDateCreated, data[0].todoCompleted)}/>
+      <AddEditToDo />
       <Footer />
     </div>
   );

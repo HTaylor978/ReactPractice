@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import '../App.css';
+import ToDoModel from '../ToDoModel';
 
 const AddEditToDo = ({ todo }) => {
-  const [description, setDescription] = useState(todo ? todo.getDescription() : '');
-  const [completed, setCompleted] = useState(todo ? todo.getCompleted() : false);
-  const [date, setDate] = useState(todo ? todo.getDate() : '');
+	const [description, setDescription] = useState(todo ? todo.getDescription() : '');
+	const [completed, setCompleted] = useState(todo ? todo.getCompleted() : false);
+	const date = todo ? todo.getFormattedDate() : '';
+
+  const createToDo = (description) => {
+    const today = new Date();
+    todo = new ToDoModel(description, today, false);
+    console.log(todo);
+	};
 
   return (
     <div className="todo-form-container">
@@ -41,7 +48,7 @@ const AddEditToDo = ({ todo }) => {
           </>
         )}
 
-        <button type="submit">Save</button>
+        <button type="submit" onClick={createToDo(description)}>Save</button>
       </form>
     </div>
   );

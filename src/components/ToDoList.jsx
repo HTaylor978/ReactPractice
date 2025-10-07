@@ -19,7 +19,7 @@ const ToDoList = ({ todos, onEdit }) => {
             {todoModels.map(todo => (
                 <ToDoItem
                     key={todo.getId()}
-                    date={todo.getDate()}
+                    date={todo.getFormattedDate()}
                     description={todo.getDescription()}
                     completed={todo.getCompleted()}
                     onEdit={() => onEdit(todo.getId())}

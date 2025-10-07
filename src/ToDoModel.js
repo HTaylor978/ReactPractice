@@ -2,44 +2,48 @@ class ToDoModel {
     static lastId = 0;
 
     constructor(description, date, completed) {
-        this.id = ++ToDoModel.lastId;
-        this.description = description;
-        this.completed = completed;
-        this.date = new Intl.DateTimeFormat('en-GB', {
+        this._id = ++ToDoModel.lastId;
+        this.todoDescription = description;
+        this.todoDateCreated = date;
+        this.todoCompleted = completed;
+    };
+
+    getId() {
+        return this._id;
+    };
+
+    getDescription() {
+        return this.todoDescription;
+    };
+
+    getDate() {
+        return this.todoDateCreated;
+    };
+
+    getFormattedDate() {
+        return new Intl.DateTimeFormat('en-GB', {
             year: 'numeric',
             month: 'short',
             day: 'numeric',
             hour: '2-digit',
             minute: '2-digit'
-            }).format(new Date(date));
-    };
-
-    getId() {
-        return this.id;
-    };
-
-    getDescription() {
-        return this.description;
-    };
-
-    getDate() {
-        return this.date;
-    };
+            }).format(new Date(this.todoDateCreated));
+    }
 
     getCompleted() {
-        return this.completed;
+        return this.todoCompleted;
     };
 
     setDescription(description) {
-        this.description = description;
+        this.todoDescription = description;
     };
 
     setDate(date) {
-        this.date = date;
+        this.todoDateCreated = date;
     };
 
     setCompleted(completed) {
-        this.completed = completed;
+        this.todoCompleted = completed;
     };
 };
 
