@@ -26,32 +26,40 @@ def get_todo(id):
     return jsonify({'error': 'ToDo not found'}), 404
 
 
-@app.route('/api/update-json', methods=['POST'])
+@app.route('/api/edit-json', methods=['POST'])
 @cross_origin(origin='localhost', headers=['Content-Type'])
-def add_new_todo():
+def edit_todo():
     try:
-        new_data = request.get_json()
+        updated_data = request.get_json()
+        todo_id = updated_data.get('_id')
 
-        # If file doesn't exist yet, create an empty list
-        if not os.path.exists(DATA_FILE):
-            with open(DATA_FILE, 'w') as f:
-                json.dump([], f)
+        if not todo_id:
+            return jsonify({'error': 'No ID provided'}), 400
 
         # Read existing data
         with open(DATA_FILE, 'r') as f:
             data = json.load(f)
 
-        # Append new data
-        data.append(new_data)
+        # Find and update the specific ToDo item
+        for i, todo in enumerate(data):
+            if todo.get('_id') == todo_id:
+                data[i] = updated_data
+                break
+        else:
+            if updated_data in data:
+                return jsonify({'message': 'Data already exists'}), 200
+            else:
+                data.append(updated_data)
+
 
         # Write updated data
         with open(DATA_FILE, 'w') as f:
             json.dump(data, f, indent=2)
 
-        return jsonify({'message': 'Data written successfully'}), 200
+        return jsonify({'message': 'Data updated successfully'}), 200
 
     except Exception as e:
-        print("Error updating JSON:", e)
+        print("Error editing JSON:", e)
         return jsonify({'error': str(e)}), 500
 
 
