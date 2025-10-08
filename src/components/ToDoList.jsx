@@ -1,11 +1,8 @@
 import React from 'react';
 import ToDoItem from './ToDoItem';
 import '../App.css';
-import ToDoModel from '../ToDoModel';
 
-const ToDoList = ({ todos, onEdit }) => {
-    const todoModels = todos.map(todo => (new ToDoModel(todo.todoDescription, todo.todoDateCreated, todo.todoCompleted)))
-
+const ToDoList = ({ todoModels }) => {
     return (
         <main>
             <h2>To Do List</h2>
@@ -14,15 +11,16 @@ const ToDoList = ({ todos, onEdit }) => {
                 <div>Description</div>
                 <div>Date Created</div>
                 <div>Action</div>
+                <div>Status</div>
             </div>
 
             {todoModels.map(todo => (
                 <ToDoItem
                     key={todo.getId()}
+                    id={todo.getId()}
                     date={todo.getFormattedDate()}
                     description={todo.getDescription()}
                     completed={todo.getCompleted()}
-                    onEdit={() => onEdit(todo.getId())}
                 />
             ))}
         </main>

@@ -21,14 +21,13 @@ header h1 {
 }
 
 footer {
-    background-color: #333;
-    padding: 15px 0;
-    text-align: center;
-    color: #fff;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+  background-color: #333;
+  padding: 15px 0;
+  text-align: center;
+  color: #fff;
+  margin-top: auto; /* Pushes footer to bottom when space available */
 }
+
 
 footer h1 {
     margin: 0;
@@ -204,4 +203,15 @@ h2 {
     padding: 8px 12px;
     border-radius: 4px;
     width: fit-content;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
 }

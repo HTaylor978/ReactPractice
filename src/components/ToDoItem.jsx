@@ -1,17 +1,17 @@
 import React from 'react';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
-const ToDoItem = ({ date, description, completed, onEdit }) => {
+const ToDoItem = ({ id, date, description, completed }) => {
     return (
         <section className={`todo-item ${completed ? 'strikethrough' : ''}`}>
             <div className="todo-description">{description}</div>
             <div className="todo-date">{date}</div>
             <div className="todo-action">
-                {!completed ? (
-                    <button onClick={onEdit}>Edit</button>
-                ) : (
-                    <span style={{ color: '#aaa' }}>—</span>
-                )}
+                <Link to={`/edit/${id}`}>Edit</Link>
+            </div>
+            <div className="todo-completed">
+                {completed ? 'Completed' : 'Pending'}
             </div>
         </section>
     );
@@ -19,4 +19,3 @@ const ToDoItem = ({ date, description, completed, onEdit }) => {
 
 
 export default ToDoItem;
-

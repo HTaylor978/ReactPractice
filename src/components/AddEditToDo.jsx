@@ -1,42 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import ToDoModel from '../ToDoModel';
 import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const AddEditToDo = ({ todo }) => {
+const AddEditToDo = ({ todoModels, onSave }) => {
+  const { id } = useParams();
+  const todo = id ? todoModels.find(t => t.getId().toString() === id) : null;
+
 	const [description, setDescription] = useState(todo ? todo.getDescription() : '');
 	const [completed, setCompleted] = useState(todo ? todo.getCompleted() : false);
 	const date = todo ? todo.getFormattedDate() : '';
-  const [toDo, setToDo] = useState(todo ? todo : '');
 
-  useEffect(() => {
-    const submit = async () => {
-      if (toDo instanceof ToDoModel) {
-        try {
-          const toDoPayload = {
-            "_id": toDo.getId(),
-            "todoDescription": toDo.getDescription(),
-            "todoDateCreated": toDo.getDate(),
-            "todoCompleted": toDo.getCompleted()
-          };
-          console.log('Sending toDo:', toDoPayload);
+  const navigate = useNavigate();
 
-          await axios.post("http://localhost:5001/api/update-json", toDoPayload, {
-            headers: {
-              'Content-Type': 'application/json'
-            }});
-        } catch (error) {
-          console.error("Failed to submit to json");
-        }
+  const updateToDoList = async (toDoInstance) => {
+    if (toDoInstance instanceof ToDoModel) {
+      try {
+        const toDoPayload = {
+          "_id": toDoInstance.getId(),
+          "todoDescription": toDoInstance.getDescription(),
+          "todoDateCreated": toDoInstance.getDate(),
+          "todoCompleted": toDoInstance.getCompleted()
+        };
+        console.log('Updating to do list:', toDoPayload);
+        await axios.post("http://localhost:5001/api/edit-json", toDoPayload, {
+          headers: {
+            'Content-Type': 'application/json'
+          }});
+      } catch (error) {
+        console.error("Failed to edit to json");
       }
-    };
-    submit();
-  }, [toDo]);
+    }
+  };
 
   const createToDo = (description) => {
     const today = new Date();
     const newToDo = new ToDoModel(description, today, false);
-    setToDo(newToDo);
+    return newToDo;
   };
 
   return (
@@ -50,7 +51,9 @@ const AddEditToDo = ({ todo }) => {
             id="description"
             name="description"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
           />
         </div>
 
@@ -74,12 +77,20 @@ const AddEditToDo = ({ todo }) => {
           </>
         )}
 
-        <button type="submit" onClick={(e) => {
-          e.preventDefault();
-          createToDo(description);
-          setDescription('');
-          }}
-          >Save</button>
+        <button type="submit" onClick={(e) => { 
+          if (todo) {
+            todo.setDescription(description);
+            todo.setCompleted(completed);
+            updateToDoList(todo)
+          } else {
+            e.preventDefault();
+            const newToDo = createToDo(description);
+            setDescription('');
+            updateToDoList(newToDo);
+            onSave();
+          }
+          navigate('/');
+        }}>Save</button>
       </form>
     </div>
   );

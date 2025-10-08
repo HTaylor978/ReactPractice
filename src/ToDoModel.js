@@ -1,8 +1,10 @@
 class ToDoModel {
-    static lastId = 0;
-
-    constructor(description, date, completed) {
-        this._id = ++ToDoModel.lastId;
+    constructor(description, date, completed, id = 0) {
+        if (!id) {
+            this._id = `${Date.now()}-${Math.floor(Math.random() * 100000)}`;
+        } else {
+            this._id = id;
+        }
         this.todoDescription = description;
         this.todoDateCreated = date;
         this.todoCompleted = completed;
