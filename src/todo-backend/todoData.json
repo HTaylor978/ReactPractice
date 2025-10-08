@@ -12,24 +12,6 @@
     "todoCompleted": false
   },
   {
-    "_id": "1759929475224-63470",
-    "todoDescription": "Do washing",
-    "todoDateCreated": "2025-10-08T13:17:55.224Z",
-    "todoCompleted": true
-  },
-  {
-    "_id": "1759929659260-95958",
-    "todoDescription": "Walk cat",
-    "todoDateCreated": "2025-10-08T13:20:59.259Z",
-    "todoCompleted": true
-  },
-  {
-    "_id": "1759930045427-30463",
-    "todoDescription": "Sample ",
-    "todoDateCreated": "2025-10-08T13:27:25.427Z",
-    "todoCompleted": false
-  },
-  {
     "_id": "1759930205469-67409",
     "todoDescription": "Sample Todo",
     "todoDateCreated": "2025-10-08T13:30:05.469Z",
