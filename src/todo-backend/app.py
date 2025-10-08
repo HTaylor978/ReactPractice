@@ -8,6 +8,24 @@ CORS(app, origins=["http://localhost:3000"])
 
 DATA_FILE = "todoData.json"
 
+@app.route('/api/todos')
+def get_todos():
+    with open(DATA_FILE, 'r') as f:
+        data = json.load(f)
+    return jsonify(data)
+
+@app.route('/api/todos/<int:id>', methods=['GET'])
+def get_todo(id):
+    with open(DATA_FILE, 'r') as f:
+        data = json.load(f)
+
+    for todo in data:
+        if todo.get('_id') == id:
+            return jsonify(todo)
+
+    return jsonify({'error': 'ToDo not found'}), 404
+
+
 @app.route('/api/update-json', methods=['POST'])
 @cross_origin(origin='localhost', headers=['Content-Type'])
 def add_new_todo():

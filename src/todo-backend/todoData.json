@@ -30,37 +30,13 @@
     "todoCompleted": false
   },
   {
-    "_id": 2,
-    "todoDescription": "12345",
-    "todoDateCreated": "2025-10-07T13:49:05.334Z",
-    "todoCompleted": false
-  },
-  {
-    "_id": 2,
-    "todoDescription": "12345",
-    "todoDateCreated": "2025-10-07T13:49:05.334Z",
-    "todoCompleted": false
-  },
-  {
     "_id": 43,
     "todoDescription": "ltfvbnkgf",
     "todoDateCreated": "2025-10-07T14:10:00.332Z",
     "todoCompleted": false
   },
   {
-    "_id": 2,
-    "todoDescription": "12345",
-    "todoDateCreated": "2025-10-07T13:49:05.334Z",
-    "todoCompleted": false
-  },
-  {
-    "_id": 2,
-    "todoDescription": "12345",
-    "todoDateCreated": "2025-10-07T13:49:05.334Z",
-    "todoCompleted": false
-  },
-  {
-    "_id": 2,
+    "_id": 46,
     "todoDescription": "12345",
     "todoDateCreated": "2025-10-07T13:49:05.334Z",
     "todoCompleted": false
