@@ -14,6 +14,8 @@ const AddEditToDo = ({ todoModels, onSave }) => {
 
   const navigate = useNavigate();
 
+  // Sends either a new todo or an existing todo that has been editted
+  // to the flask backend, which updates the json file with the new data
   const updateToDoList = async (toDoInstance) => {
     if (toDoInstance instanceof ToDoModel) {
       try {

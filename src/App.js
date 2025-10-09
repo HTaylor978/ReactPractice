@@ -13,12 +13,12 @@ function App() {
   const [data, setData] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
+  // Gets all todos from json file and creates a list of ToDoModel classes
+  // Done so the class methods can be used throughout
   useEffect(() => {
     const fetchData = async () => {
-      //console.log("Started useEffect")
       await axios.get("http://localhost:5001/api/todos")
       .then(response => {
-        //console.log("Fetched data:", response.data);
         setData(response.data.map(todo => (new ToDoModel(todo.todoDescription, todo.todoDateCreated, todo.todoCompleted, todo._id))));
       }).catch((error) => {
         console.error("Failed to fetch data from json" , error);
