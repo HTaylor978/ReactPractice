@@ -39,7 +39,7 @@ footer h1 {
 
 main {
     padding: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding-bottom: 80px; /* Prevent content from being hidden under fixed footer */
 }

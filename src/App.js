@@ -32,24 +32,24 @@ function App() {
 
   return (
     <Router>
-  <div className="app-container">
-    <Header />
-    <main className="main-content">
-      <Routes>
-        <Route path="/" element={
-          <>
-            <ToDoList todoModels={data} />
-            <AddEditToDo onSave={triggerRefresh} />
-          </>
-        } />
-        <Route path="/edit/:id" element={
-          <AddEditToDo todoModels={data} />
-        } />
-      </Routes>
-    </main>
-    <Footer />
-  </div>
-</Router>
+      <div>
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={
+              <>
+                <ToDoList todoModels={data}/>
+                <AddEditToDo onSave={triggerRefresh}/>
+              </>
+            }/>
+            <Route path={`/edit/:id`} element={
+              <AddEditToDo todoModels={data}/>
+            }/>
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
